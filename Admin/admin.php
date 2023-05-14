@@ -5,13 +5,13 @@
     header('Access-Control-Allow-Headers: Content-Type');
     header('Content-Type: application/json');
 
-    $conn = mysqli_connect("localhost","root","","activity");
+    $conn = mysqli_connect("localhost","root","","employee");
 
     if(!$conn){
         die("Connection Error");
     }
 
-    $query = "select * from student";
+    $query = "select * from employee";
     $result = mysqli_query($conn,$query);
     // if(mysqli_num_rows($result) > 0){
     //     while($show = mysqli_fetch_assoc($result)){
@@ -27,20 +27,20 @@
     }else{
         echo "No Record Found!";
     }
-    $data = [
-        [            
-            "name" => "Juan Dela Cruz",
-            "course" => "BEED"
-        ],
-        [            
-            "name" => "Pepito Manaloto",
-            "course" => "AB PolSci"
-        ],
-        [            
-            "name" => "Renmark Salalila",
-            "course" => "BSIT"
-        ]
-    ];
+    // $data = [
+    //     [            
+    //         "name" => "Juan Dela Cruz",
+    //         "department" => "BEED"
+    //     ],
+    //     [            
+    //         "name" => "Pepito Manaloto",
+    //         "department" => "AB PolSci"
+    //     ],
+    //     [            
+    //         "name" => "Renmark Salalila",
+    //         "department" => "BSIT"
+    //     ]
+    // ];
 
 
     if($method == "GET") {        
@@ -60,12 +60,12 @@
         $temp = urldecode(file_get_contents('php://input'));
         parse_str($temp, $value);
 
-        // $query = "INSERT INTO student (name,course) VALUES ('miss','dash')";
+        // $query = "INSERT INTO department (name,department) VALUES ('miss','dash')";
         // $add = mysqli_query($conn,$query);
-        // array_push($data, ["name" => $value['name'], "course" => $value['course']]);
+        // array_push($data, ["name" => $value['name'], "department" => $value['department']]);
         $name = $value['name'];
-        $course = $value['course'];
-        $query = "INSERT INTO student(name,course) VALUES ('$name','$course')";
+        $department = $value['department'];
+        $query = "INSERT INTO department(name,department) VALUES ('$name','$department')";
         $add = mysqli_query($conn,$query);
         $response = [
             "message" => "Post Success",
@@ -78,16 +78,16 @@
         $temp = urldecode(file_get_contents('php://input'));
         parse_str($temp, $value);
         
-        // array_push($data, ["id" => $value['id'], "name" => $value['name'], "course" => $value['course']]);
+        // array_push($data, ["id" => $value['id'], "name" => $value['name'], "department" => $value['department']]);
         $id = $value['id'];
         $name = $value['name'];
-        $course = $value['course'];
-        $query = "UPDATE student SET name = '$name', course = '$course' WHERE id = '$id'";
+        $department = $value['department'];
+        $query = "UPDATE department SET name = '$name', department = '$department' WHERE id = '$id'";
         $update = mysqli_query($conn,$query);
 
         
         // $data[$_GET['id']]['name'] = $value['name'];
-        // $data[$_GET['id']]['course'] = $value['course'];
+        // $data[$_GET['id']]['department'] = $value['department'];
 
         $response = [
             "message" => "Put Success",
@@ -100,7 +100,7 @@
         $temp = urldecode(file_get_contents('php://input'));
         parse_str($temp, $value);
         $id = $value['id'];
-        $query = "DELETE FROM student WHERE id = '$id'";
+        $query = "DELETE FROM department WHERE id = '$id'";
         $deletes = mysqli_query($conn,$query);
         $response = [
             "message" => "Delete Success",
