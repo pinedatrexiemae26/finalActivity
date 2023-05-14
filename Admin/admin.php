@@ -5,13 +5,13 @@
     header('Access-Control-Allow-Headers: Content-Type');
     header('Content-Type: application/json');
 
-    $conn = mysqli_connect("localhost","root","","employee");
+    $conn = mysqli_connect("localhost","root","","students");
 
     if(!$conn){
         die("Connection Error");
     }
 
-    $query = "select * from employee";
+    $query = "select * from students";
     $result = mysqli_query($conn,$query);
     // if(mysqli_num_rows($result) > 0){
     //     while($show = mysqli_fetch_assoc($result)){
@@ -30,15 +30,15 @@
     // $data = [
     //     [            
     //         "name" => "Juan Dela Cruz",
-    //         "department" => "BEED"
+    //         "course" => "BEED"
     //     ],
     //     [            
     //         "name" => "Pepito Manaloto",
-    //         "department" => "AB PolSci"
+    //         "course" => "AB PolSci"
     //     ],
     //     [            
     //         "name" => "Renmark Salalila",
-    //         "department" => "BSIT"
+    //         "course" => "BSIT"
     //     ]
     // ];
 
@@ -60,12 +60,12 @@
         $temp = urldecode(file_get_contents('php://input'));
         parse_str($temp, $value);
 
-        // $query = "INSERT INTO department (name,department) VALUES ('miss','dash')";
+        // $query = "INSERT INTO students (name,course) VALUES ('miss','dash')";
         // $add = mysqli_query($conn,$query);
-        // array_push($data, ["name" => $value['name'], "department" => $value['department']]);
+        // array_push($data, ["name" => $value['name'], "course" => $value['course']]);
         $name = $value['name'];
-        $department = $value['department'];
-        $query = "INSERT INTO department(name,department) VALUES ('$name','$department')";
+        $course = $value['course'];
+        $query = "INSERT INTO students(name,course) VALUES ('$name','$course')";
         $add = mysqli_query($conn,$query);
         $response = [
             "message" => "Post Success",
@@ -78,16 +78,16 @@
         $temp = urldecode(file_get_contents('php://input'));
         parse_str($temp, $value);
         
-        // array_push($data, ["id" => $value['id'], "name" => $value['name'], "department" => $value['department']]);
+        // array_push($data, ["id" => $value['id'], "name" => $value['name'], "course" => $value['course']]);
         $id = $value['id'];
         $name = $value['name'];
-        $department = $value['department'];
-        $query = "UPDATE department SET name = '$name', department = '$department' WHERE id = '$id'";
+        $course = $value['course'];
+        $query = "UPDATE students SET name = '$name', course = '$course' WHERE id = '$id'";
         $update = mysqli_query($conn,$query);
 
         
         // $data[$_GET['id']]['name'] = $value['name'];
-        // $data[$_GET['id']]['department'] = $value['department'];
+        // $data[$_GET['id']]['course'] = $value['course'];
 
         $response = [
             "message" => "Put Success",
@@ -100,7 +100,7 @@
         $temp = urldecode(file_get_contents('php://input'));
         parse_str($temp, $value);
         $id = $value['id'];
-        $query = "DELETE FROM department WHERE id = '$id'";
+        $query = "DELETE FROM students WHERE id = '$id'";
         $deletes = mysqli_query($conn,$query);
         $response = [
             "message" => "Delete Success",

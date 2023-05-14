@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 13, 2023 at 05:15 PM
+-- Generation Time: May 12, 2023 at 10:42 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -18,37 +18,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_employee`
+-- Database: `db_students`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee`
+-- Table structure for table `students`
 --
 
-CREATE TABLE `employee` (
+CREATE TABLE `students` (
   `id` int NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `name` text NOT NULL,
+  `course` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `employee`
+-- Dumping data for table `students`
 --
 
-INSERT INTO `employee` (`id`, `name`, `department`) VALUES
-(35, 'qe3', 'ewdewd'),
-(36, 'awd', 'awdawdwa');
+INSERT INTO `students` (`id`, `name`, `course`) VALUES
+(4, 'Thomas', 'BSIT'),
+(5, 'asd', 'asdasd'),
+(6, 'asdasd', 'asdasdasd'),
+(7, 'asdasd', 'adasd'),
+(8, 'ako', 'bsit');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `employee`
+-- Indexes for table `students`
 --
-ALTER TABLE `employee`
+ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -56,10 +59,10 @@ ALTER TABLE `employee`
 --
 
 --
--- AUTO_INCREMENT for table `employee`
+-- AUTO_INCREMENT for table `students`
 --
-ALTER TABLE `employee`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+ALTER TABLE `students`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
